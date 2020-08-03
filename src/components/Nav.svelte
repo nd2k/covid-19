@@ -9,7 +9,7 @@
 <nav class="navbar" role="navigation" aria-label="main-navigation">
 	<div class="navbar-brand">
 		<a href="/" class="navbar-item">
-			Virus
+			<img src="logo.jpg" alt="Virus">
 		</a>
 		<span class="navbar-burger" aria-label="menu" aria-expanded="false"
 		class:is-active={isOpen}
