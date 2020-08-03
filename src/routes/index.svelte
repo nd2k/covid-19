@@ -6,7 +6,7 @@
 			const usStats = await request.usStats();
 			return { usStats }
 		} catch(e) {
-
+			return this.error(500, "There is an error with the API. Please retry in few minutes.")
 		}
 	}
 </script>
