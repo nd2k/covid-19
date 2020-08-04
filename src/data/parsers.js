@@ -15,6 +15,11 @@ function parseHistoricUs(historicalData) {
   return parseHistoric(historicalData);
 }
 
+function parseHistoricState(state, historicalData) {
+  const stateHistoric = historicalData.filter((d) => d.state === state);
+  return parseHistoric(stateHistoric);
+}
+
 function parseHistoric(historicalData) {
   return [
     {
@@ -43,9 +48,8 @@ function parseHistoric(historicalData) {
       color: 'rgb(255, 99, 132)',
     },
   ].reduce((prev, next) => {
-    prev.push(parseChart(historicalData, next.key, next.label, next.color));
-
-    // console.log(prev);
+    if (historicalData.filter((d) => d[next.key]).length > 4)
+      prev.push(parseChart(historicalData, next.key, next.label, next.color));
     return prev;
   }, []);
 }
@@ -57,8 +61,6 @@ function parseChart(historicalData, key, label, color) {
       y: data[key] || 0,
     };
   });
-  // console.log('parseCHart');
-  // console.log(label, chartData);
 
   return {
     label,
@@ -86,4 +88,5 @@ export default {
   parseStateStats,
   parseHistoricUs,
   parseChart,
+  parseHistoricState,
 };

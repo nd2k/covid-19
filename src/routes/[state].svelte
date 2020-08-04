@@ -8,10 +8,12 @@
       this.error(404, 'State not found');
       return;
     }
+    const fullStateName = stateNames.find(s => s.abbreviation === state).name;
     try {
       const stats = await request.stateStats(state);
+      const historic = await request.historicState(state)
       return {
-            state, stats
+            state: fullStateName, stats, historic
           };
     } catch(e) {
       return this.error(500, "There is an error with the API. Please retry in few minutes.");
@@ -26,6 +28,7 @@
   
   export let state;
   export let stats;
+  export let historic;
 </script>
 
 <svelte:head>
@@ -41,5 +44,5 @@
 
 <CovidStat {...stats} />
 
-<CovidChart />
+<CovidChart historicalData={historic} title="Covid-9 - {state}"/>
 

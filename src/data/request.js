@@ -29,9 +29,17 @@ async function historicUs() {
   return parsers.parseHistoricUs(response.data);
 }
 
+async function historicState(state) {
+  const response = await axios.get(
+    'https://covidtracking.com/api/v1/states/daily.json'
+  );
+  return parsers.parseHistoricState(state, response.data);
+}
+
 export default {
   usStats,
   beStats,
   stateStats,
   historicUs,
+  historicState,
 };

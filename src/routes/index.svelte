@@ -22,7 +22,6 @@
 	// export let beStats;
 	// console.log(beStats);
 	export let historicalStats;
-	console.log(historicalStats, "historicUs");
 </script>
 
 <svelte:head>
@@ -37,6 +36,6 @@
 
 <CovidStat {...usStats}/>
 
-<CovidChart />
+<CovidChart historicalData={historicalStats} title="US Covid-19" />
 
 <TableContainer />
