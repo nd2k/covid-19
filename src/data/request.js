@@ -9,6 +9,12 @@ async function usStats() {
   return parsers.parseUsStats(response.data);
 }
 
+async function beStats() {
+  const response = await axios.get('https://covid19-api.org/api/status');
+
+  return response.data;
+}
+
 async function stateStats(state) {
   const response = await axios.get(
     'https://covidtracking.com/api/v1/states/current.json'
@@ -17,7 +23,15 @@ async function stateStats(state) {
   return parsers.parseStateStats(state, response.data);
 }
 
+async function historicUs() {
+  const response = await axios.get('https://covidtracking.com/api/us/daily');
+
+  return parsers.parseHistoricUs(response.data);
+}
+
 export default {
   usStats,
+  beStats,
   stateStats,
+  historicUs,
 };
